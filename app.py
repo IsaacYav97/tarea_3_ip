@@ -13,107 +13,166 @@ HTML_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de Unidades - Tarea 3.0</title>
+    <title>Conversor de Temperatura</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        body {
-            /* Nuevo fondo oscuro y frío */
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            color: #ffffff;
+
+        body{
+            margin:0;
+            padding:0;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-family:Arial, Helvetica, sans-serif;
+
+            background:linear-gradient(135deg,#4b0082,#5f27cd,#54a0ff);
         }
-        /* Efecto Glassmorphism (Cristal) */
-        .card-custom {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            padding: 3rem;
-            text-align: center;
-            max-width: 480px;
-            width: 90%;
+
+        .contenedor{
+
+            width:430px;
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0px 15px 35px rgba(0,0,0,.25);
+
         }
-        .btn-custom {
-            background-color: #00d2ff;
-            color: #0f2027;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        h1{
+
+            text-align:center;
+            color:#4b0082;
+            font-weight:bold;
+
         }
-        .btn-custom:hover {
-            background-color: #3a7bd5;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+
+        p{
+
+            text-align:center;
+            color:#666;
+
         }
-        .icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(255,255,255,0.2);
+
+        .icono{
+
+            font-size:70px;
+            text-align:center;
+            margin-bottom:15px;
+
         }
-        /* Inputs personalizados para que combinen con el fondo oscuro */
-        .form-control-custom {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 10px;
+
+        .form-control{
+
+            border-radius:12px;
+            height:50px;
+
         }
-        .form-control-custom::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+
+        .btn-convertir{
+
+            width:100%;
+            border:none;
+            border-radius:12px;
+            background:#5f27cd;
+            color:white;
+            height:50px;
+            font-size:18px;
+            transition:.3s;
+
         }
-        .form-control-custom:focus {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
-            border-color: #00d2ff;
+
+        .btn-convertir:hover{
+
+            background:#341f97;
+            transform:scale(1.03);
+
         }
-        .result-box {
-            background-color: rgba(0, 210, 255, 0.1);
-            border-left: 5px solid #00d2ff;
-            border-radius: 10px;
-            padding: 15px;
-            backdrop-filter: blur(5px);
+
+        .resultado{
+
+            margin-top:25px;
+            padding:20px;
+            background:#eef4ff;
+            border-left:6px solid #5f27cd;
+            border-radius:10px;
+            text-align:center;
+
         }
-        .text-muted-custom {
-            color: rgba(255, 255, 255, 0.7) !important;
+
+        .resultado h5{
+
+            color:#341f97;
+            font-weight:bold;
+
         }
+
+        .resultado span{
+
+            font-size:20px;
+            color:#333;
+
+        }
+
     </style>
+
 </head>
+
 <body>
 
-    <div class="card-custom">
-        <div class="icon">❄️</div>
-        <h1 class="mb-3 fw-bold">Conversor Termométrico</h1>
-        <p class="text-muted-custom mb-4">
-            Ingresa los grados en Celsius (°C) para calcular de forma inmediata su equivalente en Fahrenheit (°F).
-        </p>
-        
-        <form method="POST" action="/">
-            <div class="mb-4">
-                <input type="number" step="any" name="celsius" class="form-control text-center form-control-lg form-control-custom" placeholder="Ej: 25" required value="{{ celsius_enviado }}">
-            </div>
-            <button type="submit" class="btn btn-custom mb-4">Convertir ahora ✨</button>
-        </form>
+<div class="contenedor">
 
-        {% if resultado is not none %}
-            <div class="result-box mt-2 text-start">
-                <span class="fw-bold d-block mb-1" style="color: #00d2ff;">¡Conversión Exitosa!</span>
-                <span class="fs-5 text-white">{{ celsius_enviado }}°C equivalen a <strong>{{ resultado }}°F</strong></span>
-            </div>
-        {% endif %}
+    <div class="icono">
+        🌡️
     </div>
+
+    <h1>Conversor Celsius</h1>
+
+    <p>
+        Convierte grados Celsius a Fahrenheit de manera rápida.
+    </p>
+
+    <form method="POST" action="/">
+
+        <div class="mb-4">
+
+            <input
+                type="number"
+                name="celsius"
+                step="any"
+                class="form-control text-center"
+                placeholder="Ingrese °C"
+                required
+                value="{{ celsius_enviado }}">
+
+        </div>
+
+        <button class="btn-convertir">
+            Convertir
+        </button>
+
+    </form>
+
+    {% if resultado is not none %}
+
+    <div class="resultado">
+
+        <h5>Resultado</h5>
+
+        <span>
+
+            {{ celsius_enviado }} °C =
+            <strong>{{ resultado }} °F</strong>
+
+        </span>
+
+    </div>
+
+    {% endif %}
+
+</div>
 
 </body>
 </html>

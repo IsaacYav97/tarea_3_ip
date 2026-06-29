@@ -2,7 +2,7 @@ version: "3.9"
 
 services: 
   alexis:
-    image: ghcr.io/alexisj3489/proyecto:3.0.0
+    image: ghcr.io/isaacyav97/proyecto:3.0.0
     networks: 
       - traefik-public
     deploy: 
