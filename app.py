@@ -177,7 +177,7 @@ HTML_TEMPLATE = """
 </body>
 </html>
 """
-
+    
 @app.route('/', methods=['GET', 'POST'])
 def home():
     resultado = None
